@@ -1,8 +1,11 @@
 #ifndef PIZZERIE_HPP
 #define PIZZERIE_HPP
 #include<iostream>
+#include<string>
+#include "pizza.cpp"
+#include<list>
 using namespace std;
-    class pizzerie
+   class pizzerie
     {
     private:
         string nume;
@@ -25,6 +28,7 @@ using namespace std;
     void setData(string nume){
         this->nume=nume;
     }
-    };
-
+    void addPizza(pizza x);
+};
+    pizzerie* pizzerie::instance=NULL;
 #endif

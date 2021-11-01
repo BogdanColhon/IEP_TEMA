@@ -1,20 +1,18 @@
 #include<iostream>
 using namespace std;
 class pizza {
+    string denumire;
     int cod;
 public:
-    pizza():cod(0){}
-    pizza(const pizza& p){cod=p.cod;}
-    pizza(int c){cod=c;}
+    pizza():denumire("Pizza"),cod(0){}
+    pizza(const pizza& p){
+        denumire=p.denumire;
+        cod=p.cod;}
+    pizza(string d,int c){
+        denumire=d;
+        cod=c;}
     void display(){
-        cout<<"cod="<<cod<<endl;
+        cout<<"nume= "<<denumire<<endl;
+        cout<<"cod= "<<cod<<endl;
     }   
 };
-
-int main()
-{
-    pizza margherita(3);
-    cout<<"----------------------PIZZA-----------------------"<<endl;
-    margherita.display();
-
-}
