@@ -13,4 +13,10 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 #Define the executable
 add_executable(${PROJECT_NAME} 
-	pizzerie.cpp)
+	pizzerie.cpp
+	pizzerie.hpp
+	pizza.cpp
+	pizza.hpp
+	order.cpp
+	order.hpp
+	main2.cpp)

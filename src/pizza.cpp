@@ -1,18 +1,28 @@
-#include<iostream>
-using namespace std;
-class pizza {
-    string denumire;
-    int cod;
-public:
-    pizza():denumire("Pizza"),cod(0){}
-    pizza(const pizza& p){
+#include "pizza.hpp"
+
+pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0){}
+    pizza::pizza(const pizza& p){
         denumire=p.denumire;
-        cod=p.cod;}
-    pizza(string d,int c){
+        cod=p.cod;
+        grame=p.grame;
+        pret=p.pret;
+        }
+    pizza::pizza(string d,int c,int g, int p){
         denumire=d;
-        cod=c;}
-    void display(){
-        cout<<"nume= "<<denumire<<endl;
-        cout<<"cod= "<<cod<<endl;
-    }   
-};
+        cod=c;
+        grame=g;
+        pret=p;
+        }
+    void pizza::display(){
+        cout<<"nume="<<denumire;
+        cout<<" | cod="<<cod;
+        cout<<" | grame="<<grame;
+        cout<<" | pret="<<pret<<" lei"<<endl;
+
+    } 
+    int pizza::operator+(pizza obj1)
+    {
+        pizza temp;
+        temp.pret=pret+obj1.pret;
+        return temp.pret;
+    }

@@ -1,34 +1,21 @@
-#ifndef PIZZERIE_HPP
-#define PIZZERIE_HPP
 #include<iostream>
 #include<string>
-#include "pizza.cpp"
+#include "pizza.hpp"
 #include<list>
 using namespace std;
+
    class pizzerie
     {
     private:
         string nume;
+        list<pizza>menu;
         static pizzerie *instance;
-        pizzerie(){
-        nume="PIZZERIE GENERICA";
-    }
+        pizzerie();
 
     public:
-        static pizzerie *getInstance(){
-            if(!instance)
-            instance=new pizzerie;
-            return instance;
-        }
-
-    string getData(){
-        return this->nume;
-    }
-
-    void setData(string nume){
-        this->nume=nume;
-    }
-    void addPizza(pizza x);
+    static pizzerie *getInstance();
+    string getData();
+    void setData(string nume);
+    void addPizzaInMenu(pizza x);
+    void displayPizzaMenu();
 };
-    pizzerie* pizzerie::instance=NULL;
-#endif
