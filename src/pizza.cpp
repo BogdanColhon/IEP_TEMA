@@ -1,13 +1,13 @@
 #include "pizza.hpp"
 
-pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0){}
+    pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0){}
     pizza::pizza(const pizza& p){
         denumire=p.denumire;
         cod=p.cod;
         grame=p.grame;
         pret=p.pret;
         }
-    pizza::pizza(string d,int c,int g, int p){
+    void pizza::bakePizza(string d,int c,int g, int p){
         denumire=d;
         cod=c;
         grame=g;

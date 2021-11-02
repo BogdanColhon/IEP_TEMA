@@ -9,8 +9,9 @@
             list<pizza>orderList;
             pizza pizza_basic;
         public:
-            order(const order &o);
             order();
+            order(const order &o);
             void addPizza(pizza x);
+            void setOrderId(int orderId);
             void displayOrder();
     };

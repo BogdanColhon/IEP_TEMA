@@ -11,11 +11,12 @@ using namespace std;
         list<pizza>menu;
         static pizzerie *instance;
         pizzerie();
+        ~pizzerie(); //disallow destructor by making it private
 
     public:
     static pizzerie *getInstance();
-    string getData();
-    void setData(string nume);
+    string getName();
+    void setName(string nume);
     void addPizzaInMenu(pizza x);
     void displayPizzaMenu();
 };

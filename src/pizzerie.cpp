@@ -4,18 +4,18 @@
 #include<list>
 using namespace std;
 
-    pizzerie::pizzerie(){}
+    pizzerie::pizzerie():nume("PIZZERIE GENERICA"),menu(){}
     pizzerie* pizzerie::getInstance(){
             if(!instance)
             instance=new pizzerie;
             return instance;
         }
 
-    string pizzerie::getData(){
+    string pizzerie::getName(){
         return this->nume;
     }
 
-    void pizzerie::setData(string nume){
+    void pizzerie::setName(string nume){
         this->nume=nume;
     }
     void pizzerie::addPizzaInMenu(pizza x)
@@ -24,12 +24,12 @@ using namespace std;
     }
     void pizzerie::displayPizzaMenu()
     {
-       cout<<"----------------------PIZZA MENU-----------------------"<<endl<<endl;
+       cout<<"+----------------------PIZZA MENU-----------------------+"<<endl<<endl;
        std::list<pizza>::iterator it;
        for(it=menu.begin();it!=menu.end();++it)
        {
            it->display();
        }
-       cout<<"-------------------------------------------------";
+       cout<<"+-------------------------------------------------------+"<<endl;
     }
     pizzerie* pizzerie::instance=NULL;
