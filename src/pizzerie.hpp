@@ -11,7 +11,8 @@ using namespace std;
         list<pizza>menu;
         static pizzerie *instance;
         pizzerie();
-        ~pizzerie(); //disallow destructor by making it private
+        pizzerie(const pizzerie&);//disallow copy-constructor
+        pizzerie& operator=(const pizzerie&);//disallow copy assignment operator
 
     public:
     static pizzerie *getInstance();
