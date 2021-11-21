@@ -26,3 +26,6 @@
                 cout<<"Pret comanda: "<<pret<<"lei"<<endl; 
                 cout<<"+-------------------------------------------------------+"<<endl;
             }
+    order order::operator=(const order& obj1){
+        return *this;
+    }

@@ -23,7 +23,7 @@ int main(){
     p->displayPizzaMenu();
     
     int suma=0;
-    suma=sortiment_pizza_1+sortiment_pizza_2;
+    suma=sortiment_pizza_1+sortiment_pizza_2; //operator redefinit
     cout<<endl<<"Suma= "<<suma<<endl<<endl;
     
     order order1; //default constructor 
@@ -36,6 +36,10 @@ int main(){
     order2.setOrderId(1);
     order2.addPizza(sortiment_pizza_1);
     order2.displayOrder();
+
+    pizza pizza4; //default constructor
+    pizza4=sortiment_pizza_3=sortiment_pizza_1;
+    pizza4.display();
     
     return 0;
 }

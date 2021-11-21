@@ -14,4 +14,5 @@
             void addPizza(pizza x);
             void setOrderId(int orderId);
             void displayOrder();
+            order operator=(const order& obj1);
     };

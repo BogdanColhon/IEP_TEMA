@@ -26,3 +26,7 @@
         temp.pret=pret+obj1.pret;
         return temp.pret;
     }
+
+    pizza pizza::operator=(const pizza& obj2){
+        return *this;
+    }

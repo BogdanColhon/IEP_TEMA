@@ -12,4 +12,5 @@ public:
     void bakePizza(string d,int c,int g, int p);
     void display();
     int operator+(pizza obj1);  
+    pizza operator=(const pizza& obj2);
 };
