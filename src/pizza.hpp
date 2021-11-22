@@ -12,6 +12,21 @@ public:
     pizza(const pizza& p);
     void bakePizza(string d,int c,int g, int p);
     void display();
+    string getDenumire();
+    int getCod();
+    int getGrame();
+    int getPret();
     int operator+(pizza obj1);  
     pizza operator=(const pizza& obj2);
+};
+
+class meniupizza :public pizza{
+    string denumire_suc;
+    int ml;
+public:
+    meniupizza();
+    meniupizza(string d_s,int ml);
+    meniupizza(const meniupizza& mp);
+    void display();
+    meniupizza operator=(const meniupizza& obj2);
 };

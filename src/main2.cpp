@@ -45,5 +45,11 @@ int main(){
     pizza4=pizza4;
     pizza4.display();
     
+    meniupizza menp1("cola",330);
+    menp1.bakePizza("Rusticana",2,900,27);
+    menp1.display();
+    meniupizza menp2=menp1;//copy constructor
+    menp2.display();
+
     return 0;
 }

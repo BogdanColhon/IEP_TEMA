@@ -21,6 +21,18 @@
         cout<<" | pret="<<pret<<" lei"<<endl;
 
     } 
+    string pizza::getDenumire(){
+        return denumire;
+    }
+    int pizza::getCod(){
+        return cod;
+    }
+    int pizza::getGrame(){
+        return grame;
+    }
+    int pizza::getPret(){
+        return pret;
+    }
     int pizza::operator+(pizza obj1)
     {
         pizza temp;
@@ -32,3 +44,24 @@
            return *this;
         
     }
+    
+    meniupizza::meniupizza():denumire_suc("suc_generic"),ml(0){}
+    meniupizza::meniupizza(string _denumire_suc,int _ml):denumire_suc(_denumire_suc),ml(_ml){}
+    meniupizza::meniupizza(const meniupizza& mp):pizza(mp),denumire_suc(mp.denumire_suc),ml(mp.ml){}
+    void meniupizza::display()
+    {
+        cout<<"nume="<<getDenumire();
+        cout<<" | cod="<<getCod();
+        cout<<" | grame="<<getGrame();
+        cout<<" | pret="<<getPret()<<" lei";
+        cout<<" | suc="<<denumire_suc;
+        cout<<" | ml="<<ml<<endl;
+    }
+    meniupizza meniupizza::operator=(const meniupizza& mp){
+        pizza::operator=(mp);
+        denumire_suc=mp.denumire_suc;
+        ml=mp.ml;
+        return *this;
+    }
+
+
