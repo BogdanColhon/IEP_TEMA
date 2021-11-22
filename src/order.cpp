@@ -1,6 +1,7 @@
 #include "order.hpp"
 
     order::order():id(0),orderList(){}
+    order::order(int _id,list<pizza> _orderList):id(_id),orderList(_orderList){}
     order::order(const order &o){
                 id=o.id;
                 orderList=o.orderList;
@@ -27,5 +28,13 @@
                 cout<<"+-------------------------------------------------------+"<<endl;
             }
     order order::operator=(const order& obj1){
-        return *this;
+        if(this==&obj1)
+        {
+         cout<<"Self assignment!";
+        } 
+        else
+        {
+            return *this;
+        }
+
     }

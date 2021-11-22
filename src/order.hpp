@@ -10,6 +10,7 @@
             pizza pizza_basic;
         public:
             order();
+            order(int orderId,list<pizza> orderList);
             order(const order &o);
             void addPizza(pizza x);
             void setOrderId(int orderId);

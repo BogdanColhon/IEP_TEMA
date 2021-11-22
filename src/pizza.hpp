@@ -8,6 +8,7 @@ class pizza {
 public:
     int pret;
     pizza();
+    pizza(string d,int c,int g, int p);
     pizza(const pizza& p);
     void bakePizza(string d,int c,int g, int p);
     void display();

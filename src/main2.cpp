@@ -37,8 +37,12 @@ int main(){
     order2.addPizza(sortiment_pizza_1);
     order2.displayOrder();
 
-    pizza pizza4; //default constructor
-    pizza4=sortiment_pizza_3=sortiment_pizza_1;
+    pizza pizza4("Pizza Omletta",4,800,24);
+    sortiment_pizza_1=pizza4;
+    sortiment_pizza_1.display();
+    sortiment_pizza_1.display();
+
+    pizza4=pizza4;
     pizza4.display();
     
     return 0;

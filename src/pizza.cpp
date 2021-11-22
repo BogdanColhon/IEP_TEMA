@@ -1,6 +1,7 @@
 #include "pizza.hpp"
 
     pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0){}
+    pizza::pizza(string _denumire,int _cod,int _grame,int _pret):denumire(_denumire),cod(_cod),grame(_grame),pret(_pret){}
     pizza::pizza(const pizza& p){
         denumire=p.denumire;
         cod=p.cod;
@@ -28,5 +29,6 @@
     }
 
     pizza pizza::operator=(const pizza& obj2){
-        return *this;
+           return *this;
+        
     }
