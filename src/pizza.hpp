@@ -17,16 +17,16 @@ public:
     int getGrame();
     int getPret();
     int operator+(pizza obj1);  
-    pizza operator=(const pizza& obj2);
+    pizza& operator=(const pizza& obj2);
 };
 
 class meniupizza :public pizza{
-    string denumire_suc;
+    string denumire_bautura;
     int ml;
 public:
     meniupizza();
     meniupizza(string d_s,int ml);
     meniupizza(const meniupizza& mp);
     void display();
-    meniupizza operator=(const meniupizza& obj2);
+    meniupizza& operator=(const meniupizza& obj2);
 };

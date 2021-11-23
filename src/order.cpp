@@ -27,13 +27,15 @@
                 cout<<"Pret comanda: "<<pret<<"lei"<<endl; 
                 cout<<"+-------------------------------------------------------+"<<endl;
             }
-    order order::operator=(const order& obj1){
+    order& order::operator=(const order& obj1){
         if(this==&obj1)
         {
          cout<<"Self assignment!";
         } 
         else
         {
+            id=obj1.id;
+            orderList=obj1.orderList;
             return *this;
         }
 

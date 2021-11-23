@@ -37,19 +37,34 @@ int main(){
     order2.addPizza(sortiment_pizza_1);
     order2.displayOrder();
 
+    cout<<endl<<endl<<"Tema 2"<<endl<<endl;
     pizza pizza4("Pizza Omletta",4,800,24);
-    sortiment_pizza_1=pizza4;
-    sortiment_pizza_1.display();
-    sortiment_pizza_1.display();
+    pizza pizza5("Pizza Zero",5,0,10);
+    pizza pizza6("Pizza Pui",6,1000,30);
+    pizza4.display();
+    cout<<"ma astept la pizza omletta^"<<endl;
+    pizza4=pizza5=pizza6;
+    pizza4.display();
+    cout<<"ma astept la pizza pui^"<<endl;
 
     pizza4=pizza4;
     pizza4.display();
+    cout<<"ma astept la self assignment^"<<endl;
     
     meniupizza menp1("cola",330);
     menp1.bakePizza("Rusticana",2,900,27);
-    menp1.display();
+    //menp1.display();
     meniupizza menp2=menp1;//copy constructor
-    menp2.display();
+    //menp2.display();
+    meniupizza menp3("sprite",500);
+    menp3.bakePizza("Pizza Omletta",4,800,24);
+    meniupizza menp4("apa",1000);
+    menp4.bakePizza("Pizza Pui",6,1000,30);
+    menp4.display();
+    cout<<"ma astept la pizza pui cu apa^"<<endl;
+    menp4=menp1=menp3;
+    menp4.display();
+     cout<<"ma astept la pizza omletta cu sprite^"<<endl;
 
     return 0;
 }

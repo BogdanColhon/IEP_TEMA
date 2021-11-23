@@ -40,26 +40,37 @@
         return temp.pret;
     }
 
-    pizza pizza::operator=(const pizza& obj2){
-           return *this;
+    pizza& pizza::operator=(const pizza& obj2){
+        if(this==&obj2)
+        {
+         cout<<"Self assignment!"<<endl;
+        } 
+        else
+        {
+        denumire=obj2.denumire;
+        cod=obj2.cod;
+        grame=obj2.grame;
+        pret=obj2.pret;
+        return *this;
+        }
         
     }
     
-    meniupizza::meniupizza():denumire_suc("suc_generic"),ml(0){}
-    meniupizza::meniupizza(string _denumire_suc,int _ml):denumire_suc(_denumire_suc),ml(_ml){}
-    meniupizza::meniupizza(const meniupizza& mp):pizza(mp),denumire_suc(mp.denumire_suc),ml(mp.ml){}
+    meniupizza::meniupizza():denumire_bautura("suc_generic"),ml(0){}
+    meniupizza::meniupizza(string _denumire_bautura,int _ml):denumire_bautura(_denumire_bautura),ml(_ml){}
+    meniupizza::meniupizza(const meniupizza& mp):pizza(mp),denumire_bautura(mp.denumire_bautura),ml(mp.ml){}
     void meniupizza::display()
     {
         cout<<"nume="<<getDenumire();
         cout<<" | cod="<<getCod();
         cout<<" | grame="<<getGrame();
         cout<<" | pret="<<getPret()<<" lei";
-        cout<<" | suc="<<denumire_suc;
+        cout<<" | bautura="<<denumire_bautura;
         cout<<" | ml="<<ml<<endl;
     }
-    meniupizza meniupizza::operator=(const meniupizza& mp){
+    meniupizza& meniupizza::operator=(const meniupizza& mp){
         pizza::operator=(mp);
-        denumire_suc=mp.denumire_suc;
+        denumire_bautura=mp.denumire_bautura;
         ml=mp.ml;
         return *this;
     }
