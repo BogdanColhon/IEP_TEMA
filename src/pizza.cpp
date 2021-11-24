@@ -52,6 +52,7 @@
         cod=obj2.cod;
         grame=obj2.grame;
         pret=obj2.pret;
+        return *this;
         }
         
     }
@@ -78,6 +79,7 @@
         pizza::operator=(mp);
         denumire_bautura=mp.denumire_bautura;
         ml=mp.ml;
+        return *this;
         }
     }
 

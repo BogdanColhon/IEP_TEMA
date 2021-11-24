@@ -37,6 +37,7 @@
         {
             id=obj1.id;
             orderList=obj1.orderList;
+            return *this;
         }
 
     }
