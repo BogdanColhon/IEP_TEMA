@@ -44,6 +44,7 @@
         if(this==&obj2)
         {
          cout<<"Self assignment!"<<endl;
+         return *this;
         } 
         else
         {
@@ -51,7 +52,6 @@
         cod=obj2.cod;
         grame=obj2.grame;
         pret=obj2.pret;
-        return *this;
         }
         
     }
@@ -69,10 +69,16 @@
         cout<<" | ml="<<ml<<endl;
     }
     meniupizza& meniupizza::operator=(const meniupizza& mp){
+        if(this==&mp)
+        {
+            cout<<"Self assignment!"<<endl;
+            return *this;
+        }
+        else{
         pizza::operator=(mp);
         denumire_bautura=mp.denumire_bautura;
         ml=mp.ml;
-        return *this;
+        }
     }
 
 

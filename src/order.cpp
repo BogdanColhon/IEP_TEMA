@@ -31,12 +31,12 @@
         if(this==&obj1)
         {
          cout<<"Self assignment!";
+         return *this;
         } 
         else
         {
             id=obj1.id;
             orderList=obj1.orderList;
-            return *this;
         }
 
     }
