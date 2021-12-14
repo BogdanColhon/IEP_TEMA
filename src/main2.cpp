@@ -4,7 +4,14 @@
 #include <memory>
 #include <vector>
 #include <mutex>
-
+#include <thread> 
+mutex mtx;
+void make_delivery ( unique_ptr <order> order)
+{
+    mtx.lock();
+    order->deliverOrder();
+    mtx.unlock();
+}
 int main(){
 /*
     vector<shared_ptr<pizza>> pizzaList {
@@ -13,7 +20,6 @@ int main(){
   make_shared<pizza>("Tonno",3,700,25)
 };*/
 
-    mutex mtx;
     list<pizza> lista;
     //shared pointers pentru sortimentele de pizza, memoria poate sa se elibereze abia dupa ce toti pointerii care indica spre un sortiment sunt stersi
     shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23);
@@ -21,7 +27,7 @@ int main(){
     shared_ptr <pizza> pizza3_sptr=make_shared<pizza>("Tonno",3,700,25);
     
     
-    //unique pointer pentru comanda, daca un alt pointer indica catre aceeasi comanda, in cazul in care se sterge primul pointer, memoria de elibereaza.
+    //unique pointer pentru comanda, daca un alt pointer indica catre aceeasi comanda, in cazul in care se sterge primul pointer, memoria se elibereaza.
     unique_ptr <order> order1_sptr=make_unique<order>(1,lista);
     
     //o pizza de la o comanda poate pointa catre locatia unde pointeaza si un shared pointer de sortiment de pizza
@@ -37,11 +43,12 @@ int main(){
     order1_sptr->addPizza(*order1_pizza1_sptr.get());
     order1_sptr->addPizza(*order1_pizza2_sptr.get());
     }
-
+    order1_sptr->displayOrder();
+    
     unique_ptr <order> order2_sptr=make_unique<order>(2,lista);
     {
     shared_ptr <pizza> order2_pizza1_sptr = pizza1_sptr;
-    cout<<"or 2"<<endl<<endl;
+    cout<<endl<<"or 2"<<endl<<endl;
     cout<<"Counter-ul de referinte este incrementat pentru sortimentele 1. Pentru sortimentele 2 si 3 s-au sters pointerii de mai sus dar memoria nu s-a eliberat deoarece inca au cate un pointer catre obiect"<<endl;
     cout<<pizza1_sptr.use_count()<<endl;
     cout<<pizza2_sptr.use_count()<<endl;
@@ -49,12 +56,23 @@ int main(){
     
     order2_sptr->addPizza(*order2_pizza1_sptr.get());
     }
+    order2_sptr->displayOrder();
+
+    //hread th1 (make_delivery,order1_sptr);
+    //thread th2 (make_delivery,order2_sptr);
+
+    //th1.join();
+    //th2.join();
+    thread t1(&order::deliverOrder,&order1_sptr);
+    thread t2(&order::deliverOrder,&order2_sptr);
+
+    t1.join();
+    t2.join();
+
+
 
 
     //(static_pointer_cast<pizza>(pizza1_sptr))->display();
-    order1_sptr->displayOrder();
-
-    return 0;
 
     
     /*

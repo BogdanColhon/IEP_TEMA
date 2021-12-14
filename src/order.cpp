@@ -28,11 +28,11 @@
                 cout<<"+-------------------------------------------------------+"<<endl;
             }
 
-    void order::deliverOrder(mutex mtx)
+    void order::deliverOrder()
     {
-        mtx.lock();
+        lock_guard<mutex> lock (mtx);
         cout<<"S-a efectuat livrarea "+id<<endl;
-        mtx.unlock();
+       
     }
     order& order::operator=(const order& obj1){
         if(this==&obj1)
