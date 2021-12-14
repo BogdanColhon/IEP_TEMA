@@ -1,5 +1,6 @@
 #pragma once
 #include<iostream>
+#include <memory>
 using namespace std;
 
 class pizza {
@@ -8,11 +9,12 @@ class pizza {
     int grame;
 public:
     int pret;
+    int ambalat;
     pizza();
-    pizza(string d,int c,int g, int p);
+    pizza(string d,int c,int g, int p, int a);
     pizza(const pizza& p);
     ~pizza();
-    void bakePizza(string d,int c,int g, int p);
+    void bakePizza(string d,int c,int g, int p, int a);
     void display();
     string getDenumire();
     int getCod();

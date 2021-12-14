@@ -6,10 +6,14 @@
 #include <mutex>
 #include <thread> 
 mutex mtx;
-void make_delivery ( unique_ptr <order> order)
+void packagePizza (shared_ptr<pizza> p)
 {
+
     mtx.lock();
-    order->deliverOrder();
+    shared_ptr <pizza> shared_pizza = p;
+    p->ambalat=1;
+    cout<<"------------------------------------------->>>> Pizza urmatoare a fost ambalata: ";
+    p->display();
     mtx.unlock();
 }
 int main(){
@@ -22,10 +26,11 @@ int main(){
 
     list<pizza> lista;
     //shared pointers pentru sortimentele de pizza, memoria poate sa se elibereze abia dupa ce toti pointerii care indica spre un sortiment sunt stersi
-    shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23);
-    shared_ptr <pizza> pizza2_sptr=make_shared<pizza>("Rusticana",2,900,27);
-    shared_ptr <pizza> pizza3_sptr=make_shared<pizza>("Tonno",3,700,25);
-    
+    shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23,0);
+    shared_ptr <pizza> pizza2_sptr=make_shared<pizza>("Rusticana",2,900,27,0);
+    shared_ptr <pizza> pizza3_sptr=make_shared<pizza>("Tonno",3,700,25,0);
+
+ 
     
     //unique pointer pentru comanda, daca un alt pointer indica catre aceeasi comanda, in cazul in care se sterge primul pointer, memoria se elibereaza.
     unique_ptr <order> order1_sptr=make_unique<order>(1,lista);
@@ -34,6 +39,15 @@ int main(){
     {
     shared_ptr <pizza> order1_pizza1_sptr = pizza2_sptr;
     shared_ptr <pizza> order1_pizza2_sptr = pizza3_sptr;
+    
+    order1_pizza1_sptr->display();
+
+    thread t1(packagePizza,order1_pizza1_sptr);
+    thread t2(packagePizza,order1_pizza2_sptr);
+    t1.join();
+    t2.join();
+    order1_pizza1_sptr->display();
+
     cout<<"or 1"<<endl<<endl;
     cout<<"Counter-ul de referinte este incrementat pentru sortimentele 2 si 3"<<endl;
     cout<<pizza1_sptr.use_count()<<endl;
@@ -48,6 +62,10 @@ int main(){
     unique_ptr <order> order2_sptr=make_unique<order>(2,lista);
     {
     shared_ptr <pizza> order2_pizza1_sptr = pizza1_sptr;
+    
+    thread t3(packagePizza,order2_pizza1_sptr);
+    t3.join();
+
     cout<<endl<<"or 2"<<endl<<endl;
     cout<<"Counter-ul de referinte este incrementat pentru sortimentele 1. Pentru sortimentele 2 si 3 s-au sters pointerii de mai sus dar memoria nu s-a eliberat deoarece inca au cate un pointer catre obiect"<<endl;
     cout<<pizza1_sptr.use_count()<<endl;
@@ -57,19 +75,6 @@ int main(){
     order2_sptr->addPizza(*order2_pizza1_sptr.get());
     }
     order2_sptr->displayOrder();
-
-    //hread th1 (make_delivery,order1_sptr);
-    //thread th2 (make_delivery,order2_sptr);
-
-    //th1.join();
-    //th2.join();
-    thread t1(&order::deliverOrder,&order1_sptr);
-    thread t2(&order::deliverOrder,&order2_sptr);
-
-    t1.join();
-    t2.join();
-
-
 
 
     //(static_pointer_cast<pizza>(pizza1_sptr))->display();

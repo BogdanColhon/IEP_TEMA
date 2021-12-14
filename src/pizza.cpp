@@ -1,29 +1,32 @@
 #include "pizza.hpp"
 
-    pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0){}
-    pizza::pizza(string _denumire,int _cod,int _grame,int _pret):denumire(_denumire),cod(_cod),grame(_grame),pret(_pret){//cout<<"Pizza created"+denumire<<endl;
+    pizza::pizza():denumire("Pizza"),cod(0),grame(0),pret(0),ambalat(0){}
+    pizza::pizza(string _denumire,int _cod,int _grame,int _pret,int _ambalat):denumire(_denumire),cod(_cod),grame(_grame),pret(_pret),ambalat(_ambalat){//cout<<"Pizza created"+denumire<<endl;
     }
     pizza::pizza(const pizza& p){
         denumire=p.denumire;
         cod=p.cod;
         grame=p.grame;
         pret=p.pret;
+        ambalat=p.ambalat;
         }
     pizza::~pizza()
     {
         //cout<<"Pizza destroyed"+denumire<<endl;
     }
-    void pizza::bakePizza(string d,int c,int g, int p){
+    void pizza::bakePizza(string d,int c,int g, int p,int a){
         denumire=d;
         cod=c;
         grame=g;
         pret=p;
+        ambalat=a;
         }
     void pizza::display(){
         cout<<"nume="<<denumire;
         cout<<" | cod="<<cod;
         cout<<" | grame="<<grame;
-        cout<<" | pret="<<pret<<" lei"<<endl;
+        cout<<" | pret="<<pret<<" lei";
+        cout<<" | ambalata="<<ambalat<<endl;
 
     } 
     string pizza::getDenumire(){
