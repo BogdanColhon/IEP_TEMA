@@ -3,6 +3,7 @@
 #include "order.hpp"
 #include <memory>
 #include <vector>
+#include <mutex>
 
 int main(){
 /*
@@ -11,6 +12,8 @@ int main(){
   make_shared<pizza>("Rusticana",2,900,27),
   make_shared<pizza>("Tonno",3,700,25)
 };*/
+
+    mutex mtx;
     list<pizza> lista;
     //shared pointers pentru sortimentele de pizza, memoria poate sa se elibereze abia dupa ce toti pointerii care indica spre un sortiment sunt stersi
     shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23);
@@ -22,15 +25,31 @@ int main(){
     unique_ptr <order> order1_sptr=make_unique<order>(1,lista);
     
     //o pizza de la o comanda poate pointa catre locatia unde pointeaza si un shared pointer de sortiment de pizza
+    {
     shared_ptr <pizza> order1_pizza1_sptr = pizza2_sptr;
     shared_ptr <pizza> order1_pizza2_sptr = pizza3_sptr;
+    cout<<"or 1"<<endl<<endl;
+    cout<<"Counter-ul de referinte este incrementat pentru sortimentele 2 si 3"<<endl;
     cout<<pizza1_sptr.use_count()<<endl;
     cout<<pizza2_sptr.use_count()<<endl;
     cout<<pizza3_sptr.use_count()<<endl;
     
-
     order1_sptr->addPizza(*order1_pizza1_sptr.get());
     order1_sptr->addPizza(*order1_pizza2_sptr.get());
+    }
+
+    unique_ptr <order> order2_sptr=make_unique<order>(2,lista);
+    {
+    shared_ptr <pizza> order2_pizza1_sptr = pizza1_sptr;
+    cout<<"or 2"<<endl<<endl;
+    cout<<"Counter-ul de referinte este incrementat pentru sortimentele 1. Pentru sortimentele 2 si 3 s-au sters pointerii de mai sus dar memoria nu s-a eliberat deoarece inca au cate un pointer catre obiect"<<endl;
+    cout<<pizza1_sptr.use_count()<<endl;
+    cout<<pizza2_sptr.use_count()<<endl;
+    cout<<pizza3_sptr.use_count()<<endl;
+    
+    order2_sptr->addPizza(*order2_pizza1_sptr.get());
+    }
+
 
     //(static_pointer_cast<pizza>(pizza1_sptr))->display();
     order1_sptr->displayOrder();

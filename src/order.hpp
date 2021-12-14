@@ -1,6 +1,7 @@
    #include<iostream>
    #include <list>
    #include "pizza.hpp"
+   #include<mutex>
    using namespace std;
    class order
     {
@@ -15,5 +16,6 @@
             void addPizza(pizza x);
             void setOrderId(int orderId);
             void displayOrder();
+            void deliverOrder(mutex mtx);
             order& operator=(const order& obj1);
     };
