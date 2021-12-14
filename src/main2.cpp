@@ -1,8 +1,45 @@
 #include<iostream>
 #include "pizzerie.hpp"
 #include "order.hpp"
+#include <memory>
+#include <vector>
 
 int main(){
+/*
+    vector<shared_ptr<pizza>> pizzaList {
+  make_shared<pizza>("Salami",1,700,23),
+  make_shared<pizza>("Rusticana",2,900,27),
+  make_shared<pizza>("Tonno",3,700,25)
+};*/
+    list<pizza> lista;
+    //shared pointers pentru sortimentele de pizza, memoria poate sa se elibereze abia dupa ce toti pointerii care indica spre un sortiment sunt stersi
+    shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23);
+    shared_ptr <pizza> pizza2_sptr=make_shared<pizza>("Rusticana",2,900,27);
+    shared_ptr <pizza> pizza3_sptr=make_shared<pizza>("Tonno",3,700,25);
+    
+    
+    //unique pointer pentru comanda, daca un alt pointer indica catre aceeasi comanda, in cazul in care se sterge primul pointer, memoria de elibereaza.
+    unique_ptr <order> order1_sptr=make_unique<order>(1,lista);
+    
+    //o pizza de la o comanda poate pointa catre locatia unde pointeaza si un shared pointer de sortiment de pizza
+    shared_ptr <pizza> order1_pizza1_sptr = pizza2_sptr;
+    shared_ptr <pizza> order1_pizza2_sptr = pizza3_sptr;
+    cout<<pizza1_sptr.use_count()<<endl;
+    cout<<pizza2_sptr.use_count()<<endl;
+    cout<<pizza3_sptr.use_count()<<endl;
+    
+
+    order1_sptr->addPizza(*order1_pizza1_sptr.get());
+    order1_sptr->addPizza(*order1_pizza2_sptr.get());
+
+    //(static_pointer_cast<pizza>(pizza1_sptr))->display();
+    order1_sptr->displayOrder();
+
+    return 0;
+
+    
+    /*
+
     pizzerie *p=p->getInstance();//default constructor
     cout<<p->getName()<<endl;
     p->setName("Pizzeria Thalia");
@@ -65,6 +102,6 @@ int main(){
     menp4=menp1=menp3;
     menp4.display();
      cout<<"ma astept la pizza omletta cu sprite^"<<endl;
-
+*/
     return 0;
 }

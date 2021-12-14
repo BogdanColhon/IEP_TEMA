@@ -1,8 +1,6 @@
-#include<iostream>
-#include<string>
+
 #include "pizzerie.hpp"
-#include<list>
-using namespace std;
+
 
     pizzerie::pizzerie():nume("PIZZERIE GENERICA"),menu(){}
     pizzerie* pizzerie::getInstance(){

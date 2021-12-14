@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 using namespace std;
+
 class pizza {
     string denumire;
     int cod;
@@ -10,6 +11,7 @@ public:
     pizza();
     pizza(string d,int c,int g, int p);
     pizza(const pizza& p);
+    ~pizza();
     void bakePizza(string d,int c,int g, int p);
     void display();
     string getDenumire();
