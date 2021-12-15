@@ -20,6 +20,8 @@ add_executable(${PROJECT_NAME}
 	pizza.hpp
 	order.cpp
 	order.hpp
-	main2.cpp)
+	main2.cpp
+	lock.cpp
+	lock.hpp)
 
 

@@ -21,6 +21,10 @@
         pret=p;
         ambalat=a;
         }
+    void pizza::packaged(){
+        ambalat=1;
+        cout<<endl<<"---------------------------------------->>>> Pizza urmatoare a fost ambalata: ";
+    }
     void pizza::display(){
         cout<<"nume="<<denumire;
         cout<<" | cod="<<cod;

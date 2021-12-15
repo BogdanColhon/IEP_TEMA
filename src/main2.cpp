@@ -1,20 +1,21 @@
 #include<iostream>
 #include "pizzerie.hpp"
 #include "order.hpp"
+#include "lock.hpp"
 #include <memory>
 #include <vector>
 #include <mutex>
 #include <thread> 
-mutex mtx;
+//mutex mtx;
+Lock lMutex;
 void packagePizza (shared_ptr<pizza> p)
 {
 
-    mtx.lock();
+    lMutex.lock();
     shared_ptr <pizza> shared_pizza = p;
-    p->ambalat=1;
-    cout<<"------------------------------------------->>>> Pizza urmatoare a fost ambalata: ";
+    p->packaged();
     p->display();
-    mtx.unlock();
+    lMutex.unlock();
 }
 int main(){
 /*
@@ -23,7 +24,7 @@ int main(){
   make_shared<pizza>("Rusticana",2,900,27),
   make_shared<pizza>("Tonno",3,700,25)
 };*/
-
+   
     list<pizza> lista;
     //shared pointers pentru sortimentele de pizza, memoria poate sa se elibereze abia dupa ce toti pointerii care indica spre un sortiment sunt stersi
     shared_ptr <pizza> pizza1_sptr=make_shared<pizza>("Salami",1,700,23,0);
@@ -46,7 +47,7 @@ int main(){
     thread t2(packagePizza,order1_pizza2_sptr);
     t1.join();
     t2.join();
-    order1_pizza1_sptr->display();
+
 
     cout<<"or 1"<<endl<<endl;
     cout<<"Counter-ul de referinte este incrementat pentru sortimentele 2 si 3"<<endl;
@@ -75,6 +76,7 @@ int main(){
     order2_sptr->addPizza(*order2_pizza1_sptr.get());
     }
     order2_sptr->displayOrder();
+    order2_sptr->deliverOrder();
 
 
     //(static_pointer_cast<pizza>(pizza1_sptr))->display();

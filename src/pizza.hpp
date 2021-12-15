@@ -15,6 +15,7 @@ public:
     pizza(const pizza& p);
     ~pizza();
     void bakePizza(string d,int c,int g, int p, int a);
+    void packaged();
     void display();
     string getDenumire();
     int getCod();

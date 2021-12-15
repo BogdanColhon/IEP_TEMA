@@ -30,8 +30,11 @@
 
     void order::deliverOrder()
     {
-        lock_guard<mutex> lock (mtx);
-        cout<<"S-a efectuat livrarea "+id<<endl;
+        list<pizza>::iterator it;
+        for (it = orderList.begin(); it != orderList.end(); ++it){
+            if(it->ambalat == 0)
+                cout <<"Comanda nu se poate livra, pizza nu este ambalata";
+}
        
     }
     order& order::operator=(const order& obj1){
