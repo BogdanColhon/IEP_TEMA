@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++11 -pthread -std=c++11 -pthread  -rdynamic CMakeFiles/T1.dir/pizzerie.cpp.o CMakeFiles/T1.dir/pizza.cpp.o CMakeFiles/T1.dir/order.cpp.o CMakeFiles/T1.dir/main2.cpp.o CMakeFiles/T1.dir/lock.cpp.o  -o T1 
